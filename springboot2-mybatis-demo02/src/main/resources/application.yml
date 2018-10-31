@@ -1,0 +1,25 @@
+server:
+  port: 8090
+
+
+
+
+
+
+
+#默认使用配置
+spring:
+  profiles:
+    active: dev
+
+#公共配置与profiles选择无关
+mybatis:
+  typeAliasesPackage: com.model
+  mapperLocations: classpath:mapper/*.xml
+
+
+datasource:
+      url: jdbc:mysql://localhost:3306/test
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver

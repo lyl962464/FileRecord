@@ -1,0 +1,8 @@
+##WebScoket
+webScoket为浏览器和服务端提供了双工异步通信的功能，即浏览器可以向服务端发送消息。
+服务端也可以向浏览器发送消息
+
+
+WebSocket是通过socket来实现双工异步通信能力的。但是直接使用WebSocket协议开发程序显得
+特别烦琐。我们会使用它的子协议STOMP，是一个更高级别的协议，STOMP协议使用一个基于帧的格式来定义消息。
+与HTTP协议的request和response类似。
