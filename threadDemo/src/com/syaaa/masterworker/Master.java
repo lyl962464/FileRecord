@@ -1,6 +1,7 @@
 package com.syaaa.masterworker;
 
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
@@ -27,6 +28,7 @@ public class Master {
 
     public Master(Worker worker,int workCount){
 
+        /*每一个worker 对象都需要有Maste对象的引用，workQueue用户任务的领取，resultMap用于任务的提交*/
         worker.setWorkQueue(this.workers);
         worker.setResultMap(this.resultMap);
 
@@ -36,6 +38,28 @@ public class Master {
 
 
     }
+
+    /*5、定义任务的提交方法*/
+
+    public void submit(Task task){
+        this.workQueue.add(task);
+    }
+
+    /*6、定义worker的执行方法*/
+
+    public  void execute(){
+        /*遍历workers容器中的每一个worker 并进行启动*/
+        for(Map.Entry<String,Thread> me :workers.entrySet()){
+            me.getValue().start();
+        }
+    }
+
+
+
+
+
+
+
 
 
 }

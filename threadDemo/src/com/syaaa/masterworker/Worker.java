@@ -9,6 +9,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @date 17:29   2018/11/2
  **/
 public class Worker implements Runnable {
+
     private HashMap<String, Thread> workers;
     private ConcurrentHashMap<String, Object> resultMap;
 
@@ -22,6 +23,11 @@ public class Worker implements Runnable {
 
     @Override
     public void run() {
+        while (true) {
+            this.workers.poll();
+        }
+
+
 
     }
 
