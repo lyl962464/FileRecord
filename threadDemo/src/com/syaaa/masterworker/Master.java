@@ -29,7 +29,7 @@ public class Master {
     public Master(Worker worker,int workCount){
 
         /*每一个worker 对象都需要有Maste对象的引用，workQueue用户任务的领取，resultMap用于任务的提交*/
-        worker.setWorkQueue(this.workers);
+        worker.setWorkQueue(this.workQueue);
         worker.setResultMap(this.resultMap);
 
         for (int i = 0; i < workCount; i++) {
@@ -54,12 +54,26 @@ public class Master {
         }
     }
 
+    /*判断线程是否执行完毕*/
+
+    public boolean isComplate() {
+        for(Map.Entry<String,Thread> me :workers.entrySet()){
+
+            if (me.getValue().getState()!=Thread.State.TERMINATED) {
+                return false;
+            }
+        }
+        return true;
+    }
 
 
+    /*返回结果集*/
 
-
-
-
-
-
+    public int getResult() {
+        int res =0;
+        for(Map.Entry<String,Object> me :resultMap.entrySet()){
+           res += (Integer) me.getValue();
+        }
+        return res;
+    }
 }
