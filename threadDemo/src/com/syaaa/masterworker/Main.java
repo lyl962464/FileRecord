@@ -10,7 +10,8 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) {
-        Master master = new Master(new Worker(), 10);
+        System.out.println("当前可用的线程数为："+Runtime.getRuntime().availableProcessors());
+        Master master = new Master(new Worker(), Runtime.getRuntime().availableProcessors());
 
         int size = 100;
         Random random = new Random();
@@ -32,7 +33,7 @@ public class Main {
             if(master.isComplate()){
                 long time = System.currentTimeMillis() - start;
                int  res =  master.getResult();
-                System.out.println("返回的结果集为"+res+",耗时为"+time);
+                System.out.println("返回的结果集为"+res+",耗时为"+(time/1000)+"秒");
                 break;
             }
 
